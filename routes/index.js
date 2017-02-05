@@ -1,4 +1,5 @@
 var http = require('http')
+var request = require('request')
 
 module.exports = function(app){
   var client_id = '30c5b9a5-cda3-42b5-8340-884cd115042b';
@@ -11,36 +12,9 @@ module.exports = function(app){
       'grant_type': 'refresh_token',
       'refresh_token': code
     }
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/refresh_token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse) })
+  
     res.render('index', {'code': code})
-    
-    var options = {
-      hostname: 'https://platform.lifelog.sonymobile.com',
-      path: '/oauth/2/token',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(postData)
-      }
-    };
-    var request = http.request(options, (response) => {
-      console.log(`STATUS: ${response.statusCode}`);
-      console.log(`HEADERS: ${JSON.stringify(response.headers)}`);
-      response.setEncoding('utf8');
-      response.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`);
-      });
-      response.on('end', () => {
-        console.log('No more data in response.');
-      });
-    });
-
-    request.on('error', (e) => {
-      console.log(`problem with request: ${e.message}`);
-    });
-
-    // write data to request body
-    request.write(postData);
-    request.end();
     
   })
   app.get('/login', function(req,res){
