@@ -29,4 +29,4 @@ const options = {
   cert: fs.readFileSync('keys/cert.pem')
 };
 
-https.createServer(options, app).listen(3000);
+https.createServer(options, app).listen(process.env.PORT||3000);
