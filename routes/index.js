@@ -1,6 +1,6 @@
 module.exports = function(app){
   app.get('/', function(req,res){
-    var code = req.params.code;
+    var code = req.query.code;
     res.render('index', {'code': code})
     
   })
