@@ -7,7 +7,7 @@ $(document).ready(function() {
         async: false,
         
         contentType: 'application/json',
-        dataType: 'jsonp',
+        dataType: 'json',
         success: function (json) {
             
             console.log(json)
