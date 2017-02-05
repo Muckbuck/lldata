@@ -30,7 +30,7 @@ module.exports = function(app){
     });
 
     // write data to request body
-    request.write(postData);
+    
     request.end();
     
   })
