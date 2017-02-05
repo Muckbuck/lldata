@@ -9,8 +9,8 @@ module.exports = function(app){
     var postData = {
       'client_id': client_id,
       'client_secret': client_secret,
-      'grant_type': 'refresh_token',
-      'refresh_token': code
+      'grant_type': 'authorization_code',
+      'code': code
     }
     request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/refresh_token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse) })
   
