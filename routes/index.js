@@ -4,6 +4,7 @@ var request = require('request')
 module.exports = function(app){
   var client_id = '30c5b9a5-cda3-42b5-8340-884cd115042b';
   var client_secret = 'dblEOLzx43KGGALz2t0O9ryHgf8'
+  var responseData = null
   app.get('/', function(req,res){
     var code = req.query.code;
     var postData = {
@@ -12,9 +13,9 @@ module.exports = function(app){
       'grant_type': 'authorization_code',
       'code': code
     }
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/refresh_token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse) })
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/refresh_token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse); responseData += JSON.stringify(httpResponse); })
   
-    res.render('index', {'code': code})
+    res.render('index', {'code': code, 'responseData': responseData })
     
   })
   app.get('/login', function(req,res){
