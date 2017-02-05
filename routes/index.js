@@ -16,7 +16,7 @@ module.exports = function(app){
     var options = {
       hostname: 'https://platform.lifelog.sonymobile.com',
       path: '/oauth/2/token',
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': Buffer.byteLength(postData)
