@@ -32,5 +32,5 @@ const options = {
 var httpPort = 3000;
 var httpsPort = 443;
 
-https.createServer(options, app).listen(process.env.PORT||httpsPort);
+
 http.createServer(app).listen(process.env.PORT||httpPort);
