@@ -3,8 +3,9 @@ var request = require('request')
 
 module.exports = function(app){
   var client_id = '30c5b9a5-cda3-42b5-8340-884cd115042b';
-  var client_secret = 'dblEOLzx43KGGALz2t0O9ryHgf8'
-  var responseData = null
+  var client_secret = 'dblEOLzx43KGGALz2t0O9ryHgf8';
+  var responseData = null;
+  var userData = null;
 
   // GET route - Redirect URL
   app.get('/', function(req,res){
@@ -34,7 +35,7 @@ module.exports = function(app){
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        console.log(info)
+        userData = info
         
         
       }
@@ -42,7 +43,7 @@ module.exports = function(app){
     
     request(options, callback);
 
-    res.render('index', {'code': code, 'responseData': responseData });
+    res.render('index', {'code': code, 'userData': userData });
     
   })
 
