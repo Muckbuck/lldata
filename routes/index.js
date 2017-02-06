@@ -13,7 +13,7 @@ module.exports = function(app){
       'grant_type': 'authorization_code',
       'code': code
     }
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/refresh_token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse); responseData += JSON.stringify(httpResponse); })
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse); responseData += JSON.stringify(httpResponse); })
   
     res.render('index', {'code': code, 'responseData': responseData })
     
