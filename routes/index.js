@@ -16,7 +16,7 @@ module.exports = function(app){
       'code': code
     }
     // Send POST request with auth_code to retrieve access_token
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){ console.log(httpResponse); responseData = JSON.stringify(httpResponse); });
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse); });
     var access_token = postData.access_token;
 
     // Send GET request with access_token to retrieve user data    
@@ -24,9 +24,9 @@ module.exports = function(app){
       url: 'https://platform.lifelog.sonymobile.com/v1/users/me/activities?start_time=2017-01-01T09:00:00.000Z&end_time=2017-02-05T10:00:00.000Z',
       headers: {
         'Authorization:': access_token,
-        'Accept': application/json,
-        'Accept-Encoding': gzip, 
-        'Content-Encoding': gzip
+        'Accept': 'application/json',
+        'Accept-Encoding': 'gzip', 
+        'Content-Encoding': 'gzip'
 
       }
     };
@@ -34,9 +34,8 @@ module.exports = function(app){
     function callback(error, response, body) {
       if (!error && response.statusCode == 200) {
         var info = JSON.parse(body);
-        console.log(info)
-        console.log(info.stargazers_count + " Stars");
-        console.log(info.forks_count + " Forks");
+        
+        
       }
     }
     
@@ -51,7 +50,7 @@ module.exports = function(app){
     
     
     res.redirect('https://platform.lifelog.sonymobile.com/oauth/2/authorize?client_id=' + client_id + '&scope=lifelog.profile.read+lifelog.activities.read+lifelog.locations.read');
-    console.log(res)
+    
     
   });
 }
