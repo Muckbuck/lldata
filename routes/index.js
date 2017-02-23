@@ -8,7 +8,7 @@ module.exports = function(app){
   var userData = null;
 
   // GET route - Redirect URL
-  app.get('/', function(req,res){
+  app.get('/data', function(req,res){
     var code = req.query.code;
     var postData = {
       'client_id': client_id,
