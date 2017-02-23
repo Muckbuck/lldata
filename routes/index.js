@@ -8,7 +8,7 @@ module.exports = function(app){
   var userData = null;
 
   // GET route - Redirect URL
-  app.get('/data', function(req,res){
+  app.get('/', function(req,res){
     var code = req.query.code;
     var postData = {
       'client_id': client_id,
@@ -19,10 +19,6 @@ module.exports = function(app){
     // Send POST request with auth_code to retrieve access_token
     request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse); });
     var access_token = postData.access_token;
-    console.log(responseData)
-    var parsedResponseData = JSON.parse(responseData);
-    parsedResponseData.body;
-    
 
     // Send GET request with access_token to retrieve user data    
     var options = {
