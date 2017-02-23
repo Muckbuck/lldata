@@ -19,15 +19,9 @@ app.get('/', function(req,res){
       'code': code
     }
     // Send POST request with auth_code to retrieve access_token
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse) });
-    
-    
-    var parsedJSON = JSON.parse(responseData);
-    console.log(parsedJSON);
-    var body = parsedJSON[0].body;
-    console.log(body);
-    var bodyString = JSON.stringify(parsedJSON[0].body);
-    console.log(bodyString);
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse); });
+    var body = JSON.parse(responseData);
+    console.log(body)
     
 
     // Send GET request with access_token to retrieve user data    
@@ -43,13 +37,13 @@ app.get('/', function(req,res){
     };
     
     function callback(error, response, body) {
-      console.log('Inside req CB');
+      console.log('Inside req CB')
       
       console.log(body)
       
       if (!error && response.statusCode == 200) {
         
-        console.log('req CB 200');
+        console.log('req CB 200')
         
         
       }
