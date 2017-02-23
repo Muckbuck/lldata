@@ -28,7 +28,7 @@ module.exports = function (app) {
 
       var options = {
         host: 'platform.lifelog.sonymobile.com',
-        path: '/v1/users/me/activities?start_time=2017-01-01T09:00:00.000Z&end_time=2017-02-05T10:00:00.000Z',
+        path: '/v1/users/me/activities/ba2e7500-e022-4daf-817b-1e607e0cff43',
         headers: {
           'Authorization': access_token,
           'Accept': 'application/json',
