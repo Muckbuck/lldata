@@ -19,9 +19,10 @@ app.get('/', function(req,res){
       'code': code
     }
     // Send POST request with auth_code to retrieve access_token
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse); });
-    var body = responseData.body[0];
-    console.log(body)
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.parse(httpResponse); });
+    console.log(responseData[0])
+    console.log(responseData)
+    
 
     // Send GET request with access_token to retrieve user data    
     var options = {
