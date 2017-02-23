@@ -24,13 +24,15 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
+
+
+
+
+http.createServer(app).listen(process.env.PORT||3000);
 const options = {
   key: fs.readFileSync('keys/key.pem'),
   cert: fs.readFileSync('keys/cert.pem')
 };
 
-var httpPort = 3000;
-var httpsPort = 443;
-
-
-http.createServer(app).listen(process.env.PORT||httpPort);
+https.createServer(options, app).listen(443);
