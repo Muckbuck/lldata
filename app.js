@@ -30,9 +30,9 @@ app.use(function(req, res, next) {
 
 
 http.createServer(app).listen(process.env.PORT||3000);
-const options = {
+/*const options = {
   key: fs.readFileSync('keys/key.pem'),
   cert: fs.readFileSync('keys/cert.pem')
 };
 
-https.createServer(options, app).listen(443);
+https.createServer(options, app).listen(443);*/
