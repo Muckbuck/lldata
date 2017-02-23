@@ -6,9 +6,11 @@ module.exports = function(app){
   var client_secret = 'dblEOLzx43KGGALz2t0O9ryHgf8';
   var responseData = null;
   var userData = null;
-
+app.get('/', function(req,res){
+  res.render('index');
+});
   // GET route - Redirect URL
-  app.get('/', function(req,res){
+  app.get('/data', function(req,res){
     var code = req.query.code;
     var postData = {
       'client_id': client_id,
@@ -33,12 +35,13 @@ module.exports = function(app){
     };
     
     function callback(error, response, body) {
+      console.log('Inside req CB')
       var info = JSON.parse(body);
       userData = info
-      console.log('yo1')
+      
       if (!error && response.statusCode == 200) {
         
-        console.log('yo2')
+        console.log('req CB 200')
         
         
       }
@@ -46,7 +49,7 @@ module.exports = function(app){
     
     request(options, callback);
 
-    res.render('index', {'code': code, 'userData': userData });
+    res.render('data', {'code': code, 'userData': userData });
     
   })
 
