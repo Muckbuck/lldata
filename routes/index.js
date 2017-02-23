@@ -17,11 +17,12 @@ module.exports = function(app){
       'code': code
     }
     // Send POST request with auth_code to retrieve access_token
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = httpResponse; });
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse); });
     var access_token = postData.access_token;
     console.log(responseData)
+    var parsedResponseData = JSON.parse(responseData);
+    parsedResponseData.body;
     
-    var body = responseData[0].body
 
     // Send GET request with access_token to retrieve user data    
     var options = {
