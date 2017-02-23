@@ -17,11 +17,11 @@ module.exports = function(app){
       'code': code
     }
     // Send POST request with auth_code to retrieve access_token
-    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = httpResponse });
+    request.post({url:'https://platform.lifelog.sonymobile.com/oauth/2/token', form: postData}, function(err,httpResponse,body){  responseData = JSON.stringify(httpResponse) });
     var access_token = postData.access_token;
     console.log(responseData)
     // Send GET request with access_token to retrieve user data    
-    var options = {
+    /*var options = {
       url: 'https://platform.lifelog.sonymobile.com/v1/users/me/activities?start_time=2017-01-01T09:00:00.000Z&end_time=2017-02-05T10:00:00.000Z',
       headers: {
         'Authorization:': access_token,
@@ -45,7 +45,7 @@ module.exports = function(app){
       }
     }
     
-    request(options, callback);
+    request(options, callback);*/
 
     res.render('index', {'code': code, 'userData': userData });
     
