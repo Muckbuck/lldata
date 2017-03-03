@@ -1,5 +1,6 @@
 var http = require('http')
-var request = require('request')
+var https = require('https')
+const request = require('request');
 
 module.exports = function (app) {
   var client_id = '30c5b9a5-cda3-42b5-8340-884cd115042b';
@@ -26,44 +27,32 @@ module.exports = function (app) {
 
       
 
-      var options = {
-        host: 'platform.lifelog.sonymobile.com',
-        path: '/v1/users/me/activities/ba2e7500-e022-4daf-817b-1e607e0cff43',
-        headers: {
-          'Authorization': access_token,
-          'Accept': 'application/json',
-          'Accept-Encoding': 'gzip',
-          'Content-Encoding': 'gzip'}
+      const options = {  
+          url: 'https://apigateway.lifelog.sonymobile.com/v1/users/me/activities?start_time=2017-02-28T09:00:00.000Z&end_time=2017-03-01T15:00:00.000Z&type=physical&limit=100',
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json',
+              'Authorization': "Bearer " + access_token,
+              'Accept-Encoding': 'gzip',	 	 
+              'Content-Encoding': 'gzip'
+
+              
+          },
+          'gzip': true
       };
 
-      callback = function(response) {
-        var str = ''
-        response.on('data', function (chunk) {
-          str += chunk;
-        });
-
-        response.on('end', function () {
-          console.log(str);
-        });
-      }
-
-      var req = http.request(options, callback);
-      req.end();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      request(options, function(err, res, body) {  
+       /* var parsedBody = JSON.parse(body);
+        var details = JSON.parse(parsedBody.result);
+        var detailsString = JSON.stringify(details);
+        console.log(detailsString);*/
+        var result = JSON.parse(body).result
+        for(i = 0; i < result.length; i++){
+          console.log(result[i].details.steps)
+        }
+        //console.log((JSON.stringify(result.details.steps,null,2)))
+          
+      });
 
 
       // Send GET request with access_token to retrieve user data    
